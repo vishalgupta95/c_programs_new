@@ -50,8 +50,12 @@ void free_list(struct link **list)
         tmp = ptr;
         ptr = ptr->next;
         free(tmp->buf);
+        tmp->buf = NULL;
         free(tmp);
+        tmp = NULL;
     }
+    
+    *list = NULL;
 }
 
 void print_list(const struct link *list)
@@ -92,6 +96,9 @@ int main()
 
     free_list(&dup);
     free_list(&l1);
+
+    printf("After doing free list:");
+    print_list(l1);
 
     return 0;
 }
