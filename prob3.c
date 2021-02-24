@@ -49,6 +49,7 @@ void free_list(struct link **list)
     {
         tmp = ptr;
         ptr = ptr->next;
+        free(tmp->buf);
         free(tmp);
     }
 }
